@@ -29,7 +29,6 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
-
         val bankAccAdapter = BankAccAdapter()
 
         binding.recyclerViewHF.adapter = bankAccAdapter
