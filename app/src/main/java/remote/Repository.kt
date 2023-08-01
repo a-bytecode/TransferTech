@@ -1,23 +1,35 @@
 package remote
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.radiosharp.remote.TransferTechApiService
+import bankacc.TurnoverAcc
+import com.example.transferTech.remote.TransferTechApiService
 import kredit.BankAcc
 
-class Repository(private val api: TransferTechApiService.UserApi) {
+class Repository(private val api: TransferTechApiService.UserApi, private val turnoverApi : TurnoverApiService.UserApi) {
 
-    private val _bankACCResponse = MutableLiveData<List<BankAcc>>()
-    val bankACCResponse: LiveData<List<BankAcc>>
-        get() = _bankACCResponse
+    private val _bankAccResponse = MutableLiveData<List<BankAcc>>()
+    val bankAccResponse: LiveData<List<BankAcc>>
+        get() = _bankAccResponse
 
-    suspend fun getConnection() {
+    private val _turnoverAccResponse = MutableLiveData<List<TurnoverAcc>>()
+    val turnoverAccResponse : LiveData<List<TurnoverAcc>>
+            get() = _turnoverAccResponse
+
+
+    suspend fun getAccounts() {
         try {
+            val response = api.retrofitService.getServerResponseBankAcc()
+            _bankAccResponse.value = response
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
 
-            val response = api.retrofitService.getServerResponse()
-            _bankACCResponse.value = response
-
+    suspend fun getTurnovers(accID: String) {
+        try {
+            val responseTurnover = turnoverApi.retrofitService.getTurnovers(accID)
+            _turnoverAccResponse.value = responseTurnover
         } catch (e: Exception) {
             e.printStackTrace()
         }

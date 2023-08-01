@@ -19,7 +19,7 @@ class TurnoverAccAdapter : RecyclerView.Adapter<TurnoverAccAdapter.ItemViewHodle
 
     class ItemViewHodler(view: View) : RecyclerView.ViewHolder(view) {
 
-        val senderName = view.findViewById<TextView>(R.id.amountTV2)
+        val senderName = view.findViewById<TextView>(R.id.senderTV)
         val transactionID = view.findViewById<TextView>(R.id.transactionIDTV2)
         val date = view.findViewById<TextView>(R.id.dateTV2)
         val amount = view.findViewById<TextView>(R.id.amountTV2)
@@ -38,11 +38,11 @@ class TurnoverAccAdapter : RecyclerView.Adapter<TurnoverAccAdapter.ItemViewHodle
 
         val senderAccData : TurnoverAcc = dataset[position]
 
-        holder.senderName.text = senderAccData.senderName
+        holder.senderName.text = senderAccData.sender_name
         holder.transactionID.text = senderAccData.id
         holder.date.text = senderAccData.date
         holder.amount.text = senderAccData.amount.toString()
-        holder.senderIban.text = senderAccData.senderIban
+        holder.senderIban.text = senderAccData.sender_iban
         holder.reference.text = senderAccData.reference
 
     }

@@ -1,5 +1,6 @@
 package ui
 
+import adapter.TurnoverAccAdapter
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -21,11 +22,28 @@ class DetailFragment : Fragment() {
     ): View? {
 
         binding = DetailFragmentBinding.inflate(inflater)
-        viewModel.getRequestFromAccount()
+        viewModel.getAccounts()
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-         // TODO:
+
+        val accID = arguments?.let { DetailFragmentArgs.fromBundle(it).accID }
+
+        val turnoverAdapter = TurnoverAccAdapter()
+
+        binding.recyclerViewTurnover.adapter = turnoverAdapter
+
+        viewModel.getAccounts()
+
+
+        binding.headlineTurnoverTV.setOnClickListener {
+            viewModel.getTurnovers(accID ?: "")
+        }
+
+        viewModel.turnoverAccRequest.observe(viewLifecycleOwner) { turnoverAccList ->
+            turnoverAdapter.submitlist(turnoverAccList)
+        }
+
     }
 }

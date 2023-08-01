@@ -1,13 +1,14 @@
-package com.example.transferTech.remote
+package remote
 
+import bankacc.TurnoverAcc
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
-import kredit.BankAcc
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.Query
 
 const val BASE_URL = "https://testapi.io/api/"
 
@@ -28,14 +29,14 @@ private val retrofit = Retrofit.Builder()
     .build()
 
 
-interface TransferTechApiService{
+interface TurnoverApiService{
 
-    @GET("sf/v1/accounts")
+    @GET("sf/v1/turnovers")
 
-    suspend fun getServerResponseBankAcc() : List<BankAcc>
+    suspend fun getTurnovers(@Query("accID") accID: String) : List<TurnoverAcc>
 
     object UserApi {
-        val retrofitService: TransferTechApiService by lazy { retrofit.create(TransferTechApiService::class.java) }
+        val retrofitService: TurnoverApiService by lazy { retrofit.create(TurnoverApiService::class.java) }
     }
 
 }

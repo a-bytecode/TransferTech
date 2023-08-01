@@ -1,28 +1,53 @@
 package model
 
 import android.util.Log
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.radiosharp.remote.TransferTechApiService
+import com.example.transferTech.remote.TransferTechApiService
 import kotlinx.coroutines.launch
 import remote.Repository
+import remote.TurnoverApiService
 
 class MainViewModel : ViewModel() {
 
     private var api = TransferTechApiService.UserApi
 
-    private val repository = Repository(api)
+    private var turnoverApi = TurnoverApiService.UserApi
 
-    var bankAccRequest = repository.bankACCResponse
+    private val repository = Repository(api,turnoverApi)
 
-    fun getRequestFromAccount() {
+    var bankAccRequest = repository.bankAccResponse
+
+    var turnoverAccRequest = repository.turnoverAccResponse
+
+    val accountIdLiveData = MutableLiveData<String>()
+
+    fun getAccounts() {
         viewModelScope.launch {
             try {
-                repository.getConnection()
-                Log.d("SUCCESS Im ViewModel??","${repository.bankACCResponse.value}")
+                repository.getAccounts()
+                Log.d("SUCCESS IM VIEW MODEL??","${repository.bankAccResponse.value}")
             } catch (e:Exception) {
-                Log.d("ERROR IM VIEW MODEL","ERROR ERROR ERROR")
+                Log.d("ERROR IM VIEW MODEL!!","ERROR ACCOUNTS!!")
             }
         }
     }
+
+    fun getTurnovers(accID:String) {
+        viewModelScope.launch {
+            try {
+                repository.getTurnovers(accID)
+                Log.d("SUCCESS IM VIEW MODEL??","${repository.turnoverAccResponse.value}")
+            } catch (e:Exception) {
+                Log.d("ERROR IM VIEW MODEL!!","ERROR TURNOVERS!!")
+
+            }
+        }
+    }
+
+    fun setAccountId(id: String) {
+        accountIdLiveData.value = id
+    }
+
 }

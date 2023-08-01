@@ -13,7 +13,7 @@
         android:background="@drawable/gradient_ttv1">
 
         <TextView
-            android:id="@+id/informationTV2"
+            android:id="@+id/turnoverInfoTV2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -26,18 +26,18 @@
             app:layout_constraintTop_toBottomOf="@+id/CardViewHD" />
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewTurnover"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/informationTV2"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/turnover_item"
+            app:layout_constraintTop_toBottomOf="@+id/turnoverInfoTV2"
 
-            />
+            tools:listitem="@layout/turnover_item" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/CardViewHD"
@@ -56,7 +56,7 @@
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:id="@+id/headlineTV"
+                    android:id="@+id/headlineTurnoverTV"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poller_one"

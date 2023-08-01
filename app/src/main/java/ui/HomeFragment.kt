@@ -22,7 +22,7 @@ class HomeFragment : Fragment() {
     ): View? {
 
         binding = HomeFragmentBinding.inflate(inflater)
-        viewModel.getRequestFromAccount()
+        viewModel.getAccounts()
         return binding.root
 
     }
@@ -33,11 +33,12 @@ class HomeFragment : Fragment() {
 
         binding.recyclerViewHF.adapter = bankAccAdapter
 
-        viewModel.getRequestFromAccount()
+        viewModel.getAccounts()
 
         viewModel.bankAccRequest.observe(viewLifecycleOwner) { bankAccList ->
             // Hier die Daten im RecyclerView aktualisieren
             bankAccAdapter.submitlist(bankAccList)
         }
+
     }
 }

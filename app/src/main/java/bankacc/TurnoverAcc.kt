@@ -2,11 +2,10 @@ package bankacc
 
     data class TurnoverAcc(
         val id: String,
-        val accountId: Int,
+        val account_id: Int,
         val amount: Double,
-        val senderName: String,
-        val senderIban: String,
+        val sender_name: String,
+        val sender_iban: String,
         val reference: String,
         val date: String
         )
-

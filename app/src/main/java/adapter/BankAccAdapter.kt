@@ -3,9 +3,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.cardview.widget.CardView
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.transfer_tech.R
+import com.example.transfer_tech.databinding.HomeFragmentBinding
 import kredit.BankAcc
+import ui.HomeFragmentDirections
 
 class BankAccAdapter : RecyclerView.Adapter<BankAccAdapter.ItemViewHodler>() {
 
@@ -46,7 +49,10 @@ class BankAccAdapter : RecyclerView.Adapter<BankAccAdapter.ItemViewHodler>() {
         holder.iban.text = bankAccData.iban
         holder.currency.text = bankAccData.currency
         holder.bankACCCardview.setOnClickListener {
-            // TODO: Navigation to Detail -> Turnovers (Umsätze)
+            holder.itemView.findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToDetailFragment(
+            bankAccData.id.toString()
+            )
+            )
         }
 
     }
