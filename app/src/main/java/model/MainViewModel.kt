@@ -1,13 +1,10 @@
 package model
 
 import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.radiosharp.remote.TransferTechApiService
 import kotlinx.coroutines.launch
-import kredit.BankAcc
 import remote.Repository
 
 class MainViewModel : ViewModel() {
@@ -18,7 +15,7 @@ class MainViewModel : ViewModel() {
 
     var bankAccRequest = repository.bankACCResponse
 
-    fun getRequest() {
+    fun getRequestFromAccount() {
         viewModelScope.launch {
             try {
                 repository.getConnection()
@@ -26,12 +23,6 @@ class MainViewModel : ViewModel() {
             } catch (e:Exception) {
                 Log.d("ERROR IM VIEW MODEL","ERROR ERROR ERROR")
             }
-        }
-    }
-
-    fun observeResponse() {
-        bankAccRequest.observeForever { bankAccList ->
-            Log.d("SUCCESS??", "${bankAccList}")
         }
     }
 }

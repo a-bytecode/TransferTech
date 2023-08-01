@@ -19,13 +19,13 @@ class BankAccAdapter : RecyclerView.Adapter<BankAccAdapter.ItemViewHodler>() {
 
     class ItemViewHodler(view: View) : RecyclerView.ViewHolder(view) {
 
-        val bankname = view.findViewById<TextView>(R.id.nameTV)
-        val firstname = view.findViewById<TextView>(R.id.firstnameTV2)
-        val lastname = view.findViewById<TextView>(R.id.lastnameTV2)
-        val balance = view.findViewById<TextView>(R.id.balanceTV2)
+        val bankname = view.findViewById<TextView>(R.id.senderTV)
+        val firstname = view.findViewById<TextView>(R.id.transactionIDTV2)
+        val lastname = view.findViewById<TextView>(R.id.dateTV2)
+        val balance = view.findViewById<TextView>(R.id.amountTV2)
         val currency = view.findViewById<TextView>(R.id.currencyTV)
-        val iban = view.findViewById<TextView>(R.id.ibanTV2)
-        val bankACCCardview = view.findViewById<CardView>(R.id.bankaccCV)
+        val iban = view.findViewById<TextView>(R.id.sender_ibanTV2)
+        val bankACCCardview = view.findViewById<CardView>(R.id.turnoversCV)
 
     }
 
