@@ -37,11 +37,15 @@ class TurnoverAccAdapter : RecyclerView.Adapter<TurnoverAccAdapter.ItemViewHodle
     override fun onBindViewHolder(holder: ItemViewHodler, position: Int) {
 
         val senderAccData : TurnoverAcc = dataset[position]
-
+        val amountString = if (senderAccData.amount < 0) {
+            "${senderAccData.amount} -"
+        } else {
+            "${senderAccData.amount}  $"
+        }
         holder.senderName.text = senderAccData.sender_name
         holder.transactionID.text = senderAccData.id
         holder.date.text = senderAccData.date
-        holder.amount.text = senderAccData.amount.toString()
+        holder.amount.text = amountString
         holder.senderIban.text = senderAccData.sender_iban
         holder.reference.text = senderAccData.reference
 

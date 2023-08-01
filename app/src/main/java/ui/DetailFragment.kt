@@ -37,7 +37,7 @@ class DetailFragment : Fragment() {
 
         viewModel.getAccounts()
 
-        viewModel.getTurnovers(accID ?: "Leer,Leer,Leer")
+        viewModel.getTurnovers(accID ?: "It´s Empty!")
 
         viewModel.turnoverAccRequest.observe(viewLifecycleOwner) { turnoverAccList ->
             val filterList = turnoverAccList.filter { turnoverAcc ->

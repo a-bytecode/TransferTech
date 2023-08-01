@@ -25,7 +25,6 @@ class BankAccAdapter : RecyclerView.Adapter<BankAccAdapter.ItemViewHodler>() {
         val firstname = view.findViewById<TextView>(R.id.transactionIDTV2)
         val lastname = view.findViewById<TextView>(R.id.dateTV2)
         val balance = view.findViewById<TextView>(R.id.amountTV2)
-        val currency = view.findViewById<TextView>(R.id.currencyTV)
         val iban = view.findViewById<TextView>(R.id.sender_ibanTV2)
         val bankACCCardview = view.findViewById<CardView>(R.id.turnoversCV)
 
@@ -40,20 +39,18 @@ class BankAccAdapter : RecyclerView.Adapter<BankAccAdapter.ItemViewHodler>() {
     override fun onBindViewHolder(holder: ItemViewHodler, position: Int) {
 
         val bankAccData : BankAcc = dataset[position]
-
+        val balanceWithCurrency = "${bankAccData.balance}  ${bankAccData.currency}"
         holder.bankname.text = bankAccData.name
         holder.firstname.text = bankAccData.owner_firstname
         holder.lastname.text = bankAccData.owner_surname
-        holder.balance.text = bankAccData.balance
+        holder.balance.text = balanceWithCurrency
         holder.iban.text = bankAccData.iban
-        holder.currency.text = bankAccData.currency
         holder.bankACCCardview.setOnClickListener {
             holder.itemView.findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToDetailFragment(
             bankAccData.id.toString()
             )
             )
         }
-
     }
 
     override fun getItemCount(): Int {
