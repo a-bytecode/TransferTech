@@ -1,6 +1,6 @@
 package kredit
 
-data class Kredit(
+data class BankAcc(
     val id: Int,
     val name: String,
     val ownerFirstname: String,
