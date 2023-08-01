@@ -8,9 +8,8 @@ import okhttp3.Request
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
-import retrofit2.http.Path
 
-const val BASE_URL = "https://testapi.io/api/sf/v1/"
+const val BASE_URL = "https://testapi.io/api/"
 
 private val client:OkHttpClient = OkHttpClient.Builder()
     .addInterceptor { chain ->
@@ -31,11 +30,12 @@ private val retrofit = Retrofit.Builder()
 
 interface TransferTechApiService{
 
-    @GET("{format}/v1/accounts")
+    @GET("sf/v1/accounts")
 
-    suspend fun getServerResponse(@Path("format") format:String):List<BankAcc>
+    suspend fun getServerResponse() : List<BankAcc>
 
     object UserApi {
         val retrofitService: TransferTechApiService by lazy { retrofit.create(TransferTechApiService::class.java) }
     }
+
 }

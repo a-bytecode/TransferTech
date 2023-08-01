@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.transfer_tech.R
 import kredit.BankAcc
 
-class BankAccAdapter(private val bankAccounts: List<BankAcc>): RecyclerView.Adapter<BankAccAdapter.ItemViewHodler>() {
+class BankAccAdapter : RecyclerView.Adapter<BankAccAdapter.ItemViewHodler>() {
 
     private var dataset = listOf<BankAcc>()
 
@@ -40,9 +40,9 @@ class BankAccAdapter(private val bankAccounts: List<BankAcc>): RecyclerView.Adap
         val bankAccData : BankAcc = dataset[position]
 
         holder.bankname.text = bankAccData.name
-        holder.firstname.text = bankAccData.ownerFirstname
-        holder.lastname.text = bankAccData.ownerSurname
-        holder.balance.text = bankAccData.currency
+        holder.firstname.text = bankAccData.owner_firstname
+        holder.lastname.text = bankAccData.owner_surname
+        holder.balance.text = bankAccData.balance
         holder.iban.text = bankAccData.iban
         holder.currency.text = bankAccData.currency
         holder.bankACCCardview.setOnClickListener {

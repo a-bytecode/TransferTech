@@ -1,15 +1,19 @@
 package ui
 
+import BankAccAdapter
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import com.example.transfer_tech.databinding.HomeFragmentBinding
+import model.MainViewModel
 
 class HomeFragment : Fragment() {
 
     private lateinit var binding: HomeFragmentBinding
+    private val viewModel: MainViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -18,6 +22,7 @@ class HomeFragment : Fragment() {
     ): View? {
 
         binding = HomeFragmentBinding.inflate(inflater)
+        viewModel.getRequest()
         return binding.root
 
     }
@@ -25,5 +30,17 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
 
+        val bankAccAdapter = BankAccAdapter()
+
+        binding.recyclerViewHF.adapter = bankAccAdapter
+
+
+        binding.headlineTV.setOnClickListener {
+            viewModel.getRequest()
+            viewModel.bankAccRequest.observe(viewLifecycleOwner) { bankAccList ->
+                // Hier die Daten im RecyclerView aktualisieren
+                bankAccAdapter.submitlist(bankAccList)
+            }
+        }
     }
 }
