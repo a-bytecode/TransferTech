@@ -2,6 +2,7 @@ package ui
 
 import adapter.TurnoverAccAdapter
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -36,14 +37,14 @@ class DetailFragment : Fragment() {
 
         viewModel.getAccounts()
 
-
-        binding.headlineTurnoverTV.setOnClickListener {
-            viewModel.getTurnovers(accID ?: "")
-        }
+        viewModel.getTurnovers(accID ?: "Leer,Leer,Leer")
 
         viewModel.turnoverAccRequest.observe(viewLifecycleOwner) { turnoverAccList ->
-            turnoverAdapter.submitlist(turnoverAccList)
+            val filterList = turnoverAccList.filter { turnoverAcc ->
+                turnoverAcc.account_id.toString() == accID
+            }
+            Log.d("LISTEN CHECK","Ist die Liste voll ??? -> ${filterList}")
+            turnoverAdapter.submitlist(filterList)
         }
-
     }
 }

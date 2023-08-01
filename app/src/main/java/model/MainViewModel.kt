@@ -1,7 +1,6 @@
 package model
 
 import android.util.Log
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.transferTech.remote.TransferTechApiService
@@ -21,8 +20,6 @@ class MainViewModel : ViewModel() {
 
     var turnoverAccRequest = repository.turnoverAccResponse
 
-    val accountIdLiveData = MutableLiveData<String>()
-
     fun getAccounts() {
         viewModelScope.launch {
             try {
@@ -38,16 +35,11 @@ class MainViewModel : ViewModel() {
         viewModelScope.launch {
             try {
                 repository.getTurnovers(accID)
-                Log.d("SUCCESS IM VIEW MODEL??","${repository.turnoverAccResponse.value}")
+                Log.d("FUNKTIONIERT DIE ID ???","${accID}")
             } catch (e:Exception) {
                 Log.d("ERROR IM VIEW MODEL!!","ERROR TURNOVERS!!")
 
             }
         }
     }
-
-    fun setAccountId(id: String) {
-        accountIdLiveData.value = id
-    }
-
 }

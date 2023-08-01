@@ -14,7 +14,6 @@ class BankAccAdapter : RecyclerView.Adapter<BankAccAdapter.ItemViewHodler>() {
 
     private var dataset = listOf<BankAcc>()
 
-
     fun submitlist(BankACCList: List<BankAcc>) {
         dataset = BankACCList
         notifyDataSetChanged()
