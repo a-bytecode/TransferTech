@@ -1,8 +1,6 @@
-import android.content.ClipData.Item
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
@@ -14,8 +12,8 @@ class BankAccAdapter(private val bankAccounts: List<BankAcc>): RecyclerView.Adap
     private var dataset = listOf<BankAcc>()
 
 
-    fun submitlist(radioList: List<BankAcc>) {
-        dataset = radioList
+    fun submitlist(BankACCList: List<BankAcc>) {
+        dataset = BankACCList
         notifyDataSetChanged()
     }
 
@@ -47,12 +45,13 @@ class BankAccAdapter(private val bankAccounts: List<BankAcc>): RecyclerView.Adap
         holder.balance.text = bankAccData.currency
         holder.iban.text = bankAccData.iban
         holder.currency.text = bankAccData.currency
+        holder.bankACCCardview.setOnClickListener {
+            // TODO: Navigation to Detail -> Turnovers (Umsätze)
+        }
 
     }
 
     override fun getItemCount(): Int {
         return  dataset.size
     }
-
-
 }
