@@ -21,7 +21,7 @@ Beim Starten der App wird automatisch ein API-Abruf durchgeführt, um fiktive Ba
 
 ## :computer: Lieblings Code Ausschnitt:
 
-*Dieser Codeausschnitt dient dazu, den API-Request zu beobachten, der gemacht wurde, und anschließend die Account-ID aus der LiveData zu filtern. Dadurch werden die entsprechenden Umsätze der Anfrage gefiltert und im Endresultat als Liste angezeigt.*
+*Dieser Codeausschnitt dient dazu, den API-Request zu beobachten, der gemacht wurde, und anschließend die Account-ID aus der LiveData zu filtern. Dadurch werden die zugehörigen Umsätze einer Account-ID zugewiesen und am Ende als Liste angezeigt.*
 ```
  viewModel.turnoverAccRequest.observe(viewLifecycleOwner) { turnoverAccList ->
             val filterList = turnoverAccList.filter { turnoverAcc ->
