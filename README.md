@@ -14,7 +14,7 @@ Beim Starten der App wird automatisch ein API-Abruf durchgeführt, um fiktive Ba
 
 ## :rocket: Verwendete Frameworks:
 * *Retrofit / REST-Client-Bibliothek*
-- *Jetpak Navigation Component*
+- *Jetpack Navigation Component*
 + *Roboelektrik Framework*
 * *JUnit 4 Framework*
 - *Mockito Framework*
