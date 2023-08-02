@@ -7,12 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import com.example.transferTech.remote.TransferTechApiService
 import com.example.transfer_tech.databinding.DetailFragmentBinding
 import model.MainViewModel
 import remote.ApiStatus
-import remote.Repository
-import remote.TurnoverApiService
 
 class DetailFragment : Fragment() {
 

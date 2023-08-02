@@ -7,12 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import com.example.transferTech.remote.TransferTechApiService
 import com.example.transfer_tech.databinding.HomeFragmentBinding
 import model.MainViewModel
 import remote.ApiStatus
-import remote.Repository
-import remote.TurnoverApiService
+
 
 class HomeFragment : Fragment() {
 
@@ -61,7 +59,6 @@ class HomeFragment : Fragment() {
         viewModel.bankAccRequest.observe(viewLifecycleOwner) { bankAccList ->
 
             bankAccAdapter.submitlist(bankAccList)
-
         }
     }
 

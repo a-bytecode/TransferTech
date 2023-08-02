@@ -6,7 +6,6 @@ import androidx.cardview.widget.CardView
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.transfer_tech.R
-import com.example.transfer_tech.databinding.HomeFragmentBinding
 import kredit.BankAcc
 import ui.HomeFragmentDirections
 
