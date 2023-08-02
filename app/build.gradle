@@ -36,6 +36,26 @@ android {
     buildFeatures {
         dataBinding true
     }
+
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+        }
+    }
+}
+/*
+* configurations.all definiert, dass die Konfiguration auf
+* alle Abhängigkeitskonfigurationen angewendet wird.
+* Behebt den Fehler: Execution failed for task ':app:checkDebugDuplicateClasses'
+*/
+configurations.all {
+    resolutionStrategy {
+        eachDependency {
+            if ((requested.group == "org.jetbrains.kotlin") && (requested.name.startsWith("kotlin-stdlib"))) {
+                useVersion("1.8.0")
+            }
+        }
+    }
 }
 
 dependencies {
@@ -80,5 +100,10 @@ dependencies {
     // Mockito Framework (Um Testdaten zu Simulieren)
     testImplementation 'org.mockito:mockito-core:3.3.3'
     testImplementation 'androidx.test.ext:junit-ktx:1.1.5'
+
+    testImplementation 'androidx.arch.core:core-testing:2.1.0'
+
+    testImplementation "io.mockk:mockk:1.12.0" // Die neueste Version findet man auf der Mockk-Website oder im Maven-Repository.
+
 
 }

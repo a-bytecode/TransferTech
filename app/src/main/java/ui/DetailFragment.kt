@@ -23,7 +23,7 @@ class DetailFragment : Fragment() {
     ): View? {
 
         binding = DetailFragmentBinding.inflate(inflater)
-        viewModel.getAccounts()
+
         return binding.root
     }
 
@@ -43,7 +43,6 @@ class DetailFragment : Fragment() {
             val filterList = turnoverAccList.filter { turnoverAcc ->
                 turnoverAcc.account_id.toString() == accID
             }
-            Log.d("LISTEN CHECK","Ist die Liste voll ??? -> ${filterList}")
             turnoverAdapter.submitlist(filterList)
         }
     }

@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.example.transfer_tech.databinding.HomeFragmentBinding
+import model.ApiStatus
 import model.MainViewModel
 
 class HomeFragment : Fragment() {
@@ -22,7 +23,7 @@ class HomeFragment : Fragment() {
     ): View? {
 
         binding = HomeFragmentBinding.inflate(inflater)
-        viewModel.getAccounts()
+
         return binding.root
 
     }
@@ -35,10 +36,30 @@ class HomeFragment : Fragment() {
 
         viewModel.getAccounts()
 
+        viewModel.apiStatus.observe(viewLifecycleOwner) {
+            when(it) {
+                ApiStatus.LOADING -> {
+                    binding.progressBarHome.visibility = View.VISIBLE
+                    binding.recyclerViewHF.visibility = View.GONE
+                }
+
+                ApiStatus.FOUND_RESULTS -> {
+                    binding.progressBarHome.visibility = View.GONE
+                    binding.recyclerViewHF.visibility = View.VISIBLE
+                }
+
+                ApiStatus.ERROR -> {
+                    binding.progressBarHome.visibility = View.VISIBLE
+                    binding.recyclerViewHF.visibility = View.GONE
+                }
+            }
+        }
+
         viewModel.bankAccRequest.observe(viewLifecycleOwner) { bankAccList ->
             // Hier die Daten im RecyclerView aktualisieren
             bankAccAdapter.submitlist(bankAccList)
         }
-
     }
+
+
 }

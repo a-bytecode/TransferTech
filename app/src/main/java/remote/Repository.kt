@@ -4,7 +4,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import bankacc.TurnoverAcc
 import com.example.transferTech.remote.TransferTechApiService
+import kotlinx.coroutines.delay
 import kredit.BankAcc
+
 
 class Repository(private val api: TransferTechApiService.UserApi, private val turnoverApi : TurnoverApiService.UserApi) {
 
@@ -15,7 +17,6 @@ class Repository(private val api: TransferTechApiService.UserApi, private val tu
     private val _turnoverAccResponse = MutableLiveData<List<TurnoverAcc>>()
     val turnoverAccResponse : LiveData<List<TurnoverAcc>>
             get() = _turnoverAccResponse
-
 
     suspend fun getAccounts() {
         try {
@@ -34,4 +35,5 @@ class Repository(private val api: TransferTechApiService.UserApi, private val tu
             e.printStackTrace()
         }
     }
+
 }
