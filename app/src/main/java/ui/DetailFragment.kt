@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.example.transfer_tech.databinding.DetailFragmentBinding
+import model.ApiStatus
 import model.MainViewModel
 
 class DetailFragment : Fragment() {
@@ -37,7 +38,25 @@ class DetailFragment : Fragment() {
 
         viewModel.getAccounts()
 
-        viewModel.getTurnovers(accID ?: "It´s Empty!")
+        viewModel.apiStatus.observe(viewLifecycleOwner) {
+
+            when(it) {
+                ApiStatus.LOADING -> {
+                    binding.progressBarDetail.visibility = View.VISIBLE
+                    binding.recyclerViewTurnover.visibility = View.GONE
+                }
+
+                ApiStatus.FOUND_RESULTS -> {
+                    binding.progressBarDetail.visibility = View.GONE
+                    binding.recyclerViewTurnover.visibility = View.VISIBLE
+                }
+
+                ApiStatus.ERROR -> {
+                    binding.progressBarDetail.visibility = View.VISIBLE
+                    binding.recyclerViewTurnover.visibility = View.GONE
+                }
+            }
+        }
 
         viewModel.turnoverAccRequest.observe(viewLifecycleOwner) { turnoverAccList ->
             val filterList = turnoverAccList.filter { turnoverAcc ->
@@ -45,5 +64,7 @@ class DetailFragment : Fragment() {
             }
             turnoverAdapter.submitlist(filterList)
         }
+
+        viewModel.getTurnovers(accID ?: "It´s Empty!")
     }
 }

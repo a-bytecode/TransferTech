@@ -12,6 +12,18 @@
         android:layout_height="match_parent"
         android:background="@drawable/gradient_ttv1">
 
+        <ProgressBar
+            android:id="@+id/progressBarDetail"
+            style="@android:style/Widget.DeviceDefault.Light.ProgressBar"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:progressTint="#FFFFFF"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <TextView
             android:id="@+id/turnoverInfoTV2"
             android:layout_width="wrap_content"

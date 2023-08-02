@@ -7,6 +7,7 @@ import remote.Repository
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import bankacc.TurnoverAcc
 import kotlinx.coroutines.runBlocking
+import kredit.BankAcc
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mockito.*
@@ -17,14 +18,79 @@ import remote.TurnoverApiService
 @Config(sdk = [Build.VERSION_CODES.Q])
 class FuncTests {
 
-    private var AccountApi = TransferTechApiService.UserApi
+    private var accountApi = TransferTechApiService.UserApi
     private var turnoverApi = TurnoverApiService.UserApi
 
     private lateinit var repository: Repository
 
+    // ***** UnitTest für getAccounts ***** //
+
+    suspend fun getAccounts() : List<BankAcc> {
+
+        repository = Repository(accountApi,turnoverApi)
+
+        return accountApi.retrofitService.getServerResponseBankAcc()
+    }
+
+    @Test
+    fun getAccountsTest() = runBlocking{
+
+        val accounts = listOf(
+            BankAcc(
+                0,
+                "Zizzle Kredit",
+                "Marcy",
+                "Keith",
+                "203467076.55",
+                "€",
+                "DE13530942428941855348756310"
+            ),
+            BankAcc(
+                1,
+                "Utarian Kredit",
+                "Cabrera",
+                "Terry",
+                "100392.05",
+                "$",
+                "DE75032031245244903731529334"
+            ),
+            BankAcc(
+                2,
+                "Daycore Depot",
+                "Wilcox",
+                "Hendrix",
+                "1202.57",
+                "€",
+                "DE24193391086374847211003067"
+            ),
+            BankAcc(
+                3,
+                "Imperium Kredit",
+                "Paula",
+                "Erickson",
+                "-2545.75",
+                "€",
+                "DE17639860489418373524724268"
+            ),
+            BankAcc(
+                4,
+                "Xelegyl Depot",
+                "Mckinney",
+                "Cherry",
+                "1934875130.94",
+                "¥",
+                "DE79393819988111778189456949"
+            )
+        )
+
+        assertEquals(getAccounts(),accounts)
+    }
+
+    // ***** UnitTest für getTurnover ***** //
+
     suspend fun getTurnovers(accID: String) :  List<TurnoverAcc> {
 
-        repository = Repository(AccountApi,turnoverApi)
+        repository = Repository(accountApi,turnoverApi)
 
         return turnoverApi.retrofitService.getTurnovers(accID)
     }

@@ -35,6 +35,7 @@ open class MainViewModel : ViewModel() {
                 repository.getAccounts()
                 _apiStatus.value = ApiStatus.FOUND_RESULTS
             } catch (e:Exception) {
+                _apiStatus.value = ApiStatus.ERROR
                 Log.d("Error im ViewModel","${bankAccRequest.value}")
             }
         }
@@ -46,8 +47,8 @@ open class MainViewModel : ViewModel() {
                 _apiStatus.value = ApiStatus.LOADING
                 repository.getTurnovers(accID)
                 _apiStatus.value = ApiStatus.FOUND_RESULTS
-
             } catch (e:Exception) {
+                _apiStatus.value = ApiStatus.ERROR
                 Log.d("Error im ViewModel","${turnoverAccRequest.value}")
             }
         }
