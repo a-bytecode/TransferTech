@@ -2,15 +2,17 @@ package ui
 
 import adapter.TurnoverAccAdapter
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import com.example.transferTech.remote.TransferTechApiService
 import com.example.transfer_tech.databinding.DetailFragmentBinding
-import model.ApiStatus
 import model.MainViewModel
+import remote.ApiStatus
+import remote.Repository
+import remote.TurnoverApiService
 
 class DetailFragment : Fragment() {
 
@@ -36,8 +38,6 @@ class DetailFragment : Fragment() {
 
         binding.recyclerViewTurnover.adapter = turnoverAdapter
 
-        viewModel.getAccounts()
-
         viewModel.apiStatus.observe(viewLifecycleOwner) {
 
             when(it) {
@@ -58,13 +58,13 @@ class DetailFragment : Fragment() {
             }
         }
 
+        viewModel.getTurnovers(accID ?: "It´s Empty!")
+
         viewModel.turnoverAccRequest.observe(viewLifecycleOwner) { turnoverAccList ->
             val filterList = turnoverAccList.filter { turnoverAcc ->
                 turnoverAcc.account_id.toString() == accID
             }
             turnoverAdapter.submitlist(filterList)
         }
-
-        viewModel.getTurnovers(accID ?: "It´s Empty!")
     }
 }
