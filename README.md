@@ -19,7 +19,7 @@ Beim Starten der App wird automatisch ein API-Abruf durchgeführt, um fiktive Ba
 * *JUnit 4 Framework*
 - *Mockito Framework*
 
-## :computer: Lieblings Code Ausschnitt:
+## :computer: Lieblings Codeausschnitt:
 
 *Dieser Codeausschnitt dient dazu, den API-Request zu beobachten, der gemacht wurde, und anschließend die Account-ID aus der LiveData zu filtern. Dadurch werden die zugehörigen Umsätze einer Account-ID zugewiesen und am Ende als Liste angezeigt.*
 ```
