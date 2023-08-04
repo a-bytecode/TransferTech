@@ -59,7 +59,7 @@ class DetailFragment : Fragment() {
 
         viewModel.turnoverAccRequest.observe(viewLifecycleOwner) { turnoverAccList ->
             val filterList = turnoverAccList.filter { turnoverAcc ->
-                turnoverAcc.account_id.toString() == accID
+                turnoverAcc.accIdentifier.toString() == accID
             }
             turnoverAdapter.submitlist(filterList)
         }
